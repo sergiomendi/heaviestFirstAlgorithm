@@ -1,5 +1,4 @@
-﻿
-namespace Supermarket
+﻿namespace Supermarket
 {
     public class Basket
     {
@@ -14,15 +13,15 @@ namespace Supermarket
             products = new List<Product>();
         }
 
-        public void AddProducts(List<Product> productsToAdd)
+        public void AddProducts(List<Product> productsToAddList)
         {
-            productsToAdd.Sort((a, b) => b.Weight.CompareTo(a.Weight));
-            foreach (var product in productsToAdd)
+            productsToAddList.Sort((a, b) => b.Weight.CompareTo(a.Weight));
+            foreach (var productToAdd in productsToAddList)
             {
-                if (currentWeight + product.Weight <= maxWeight)
+                if (currentWeight + productToAdd.Weight <= maxWeight)
                 {
-                    products.Add(product);
-                    currentWeight += product.Weight;
+                    products.Add(productToAdd);
+                    currentWeight += productToAdd.Weight;
                 }
             }
         }
@@ -42,7 +41,7 @@ namespace Supermarket
 
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             List<Product> itemsIWantToBuy = new List<Product>
             {

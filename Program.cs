@@ -1,11 +1,11 @@
-﻿namespace Supermarket
+﻿namespace HeaviestFirstShopping
 {
     public class Basket
     {
         private double maxWeight;
         private double currentWeight = 0.0;
         private List<Product> products;
-        public IReadOnlyList<Product> Products => products;
+        public IReadOnlyList<Product> Products => products; // Expose products as read-only for encapsulation
 
         public Basket(double maxWeight)
         {
@@ -29,8 +29,8 @@
 
     public class Product
     {
-        public string Name { get; set; }
-        public double Weight { get; set; }
+        public string Name { get; } // Read-only property 
+        public double Weight { get; } // Read-only property
 
         public Product(string name, double weight)
         {
@@ -54,6 +54,11 @@
 
             basket.AddProducts(itemsIWantToBuy); // Rice must not be added
 
+            PrintBasketItems(basket);
+        }
+
+        private static void PrintBasketItems(Basket basket)
+        {
             Console.WriteLine("Items in basket:");
             foreach (var product in basket.Products)
             {
